@@ -2,6 +2,7 @@ package ua.com.infopulse.demo.rest;
 
 import ua.com.infopulse.demo.dto.ProjectDto;
 import ua.com.infopulse.demo.dto.ProjectFinishDto;
+import ua.com.infopulse.demo.dto.ProjectSetUsers;
 import ua.com.infopulse.demo.dto.ProjectStatusDto;
 import ua.com.infopulse.demo.services.ProjectService;
 
@@ -49,7 +50,6 @@ public class ProjectsRest {
     @Consumes("application/json")
     @Produces("application/json")
     public ProjectDto finishProject(ProjectFinishDto projectFinishDto) {
-
         return projectService.finishProject(projectFinishDto);
     }
 
@@ -58,5 +58,12 @@ public class ProjectsRest {
     @Produces("application/json")
     public ProjectStatusDto getProjectsStatus() {
         return projectService.getProjectsStatus();
+    }
+
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    public ProjectDto projectSetUsers(ProjectSetUsers projectSetUsers) {
+        return projectService.projectSetUsers(projectSetUsers);
     }
 }

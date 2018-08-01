@@ -30,7 +30,9 @@ public class UserDao {
     }
 
     public void delete(long id) {
-        em.remove(get(id));
+        User user = get(id);
+        user.setStatus(User.Status.DELETED);
+        update(user);
 
     }
 
@@ -42,7 +44,7 @@ public class UserDao {
     }
 
     public UserStatusDto getUserStatus() {
-        List<Object[]> results = em.createNativeQuery("SELECT u.statuse, count(*) FROM User u group by status").getResultList();
+        List<Object[]> results = em.createNativeQuery("SELECT u.statuse, count(*) FROM USER u group by status").getResultList();
         UserStatusDto userStatusDto = new UserStatusDto();
         results.stream().forEach((record) -> {
             if (((String) record[0]).equalsIgnoreCase(User.Status.ACTIVE.name())) {
@@ -54,6 +56,18 @@ public class UserDao {
             }
         });
         return userStatusDto;
+    }
+
+    public List<User> getUsers(List<Long> usersIds) {
+        List<User> result = em.createQuery("SELECT u FROM USER u WHERE u.id IN :ids").
+                setParameter("ids", usersIds).getResultList();
+        return result;
+    }
+
+    public List<User> getUsersByProjectId(Long projectId) {
+        List<User> result = em.createQuery("SELECT u FROM USER u WHERE u.projectId = :id").
+                setParameter("id", projectId).getResultList();
+        return result;
     }
 
 }

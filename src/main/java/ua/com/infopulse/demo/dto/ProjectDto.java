@@ -27,13 +27,5 @@ public class ProjectDto {
         return project;
     }
 
-    public static ProjectDto fromProject(Project project) {
-        ProjectDto projectDto = new ProjectDto();
-        projectDto.setId(project.getId());
-        projectDto.setName(project.getName());
-        projectDto.setStartDate(project.getEndDate());
-        projectDto.setEndDate(project.getEndDate());
-        projectDto.setUsers(UserDto.fromUsers(project.getUsers()));
-        return projectDto;
-    }
+
 }

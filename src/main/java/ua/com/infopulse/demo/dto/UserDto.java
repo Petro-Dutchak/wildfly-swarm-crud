@@ -14,7 +14,7 @@ public class UserDto {
     private String surName;
     private LocalDate dateOfBirth;
     private User.Status status;
-    private ProjectDto project;
+    private long projectId;
 
     public static User toUser(UserDto userDto) {
         User user = new User();
@@ -23,7 +23,6 @@ public class UserDto {
         user.setFirstName(userDto.getFirstName());
         user.setSurName(userDto.getSurName());
         user.setStatus(userDto.getStatus());
-        user.setProject(ProjectDto.toProject(userDto.getProject()));
         return user;
     }
 
@@ -35,22 +34,7 @@ public class UserDto {
         return users;
     }
 
-    public static UserDto fromUser(User user) {
-        UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
-        userDto.setDateOfBirth(user.getDateOfBirth());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setSurName(user.getSurName());
-        userDto.setStatus(user.getStatus());
-//        userDto.setProject(ProjectDto.fromProject(user.getProject()));
-        return userDto;
-    }
 
-    public static Set<UserDto> fromUsers(Set<User> users) {
-        Set<UserDto> usersDto = new HashSet<>();
-        for (User user :users) {
-            usersDto.add(fromUser(user));
-        }
-        return usersDto;
-    }
+
+
 }
