@@ -37,7 +37,7 @@ public class User implements Serializable {
         userDto.setFirstName(user.getFirstName());
         userDto.setSurName(user.getSurName());
         userDto.setStatus(user.getStatus());
-        userDto.setProjectId(user.getProject().getId());
+        userDto.setProjectId(user.getProject() != null ? user.getProject().getId() : null);
         return userDto;
     }
     public static Set<UserDto> toUsersDto(Set<User> users) {

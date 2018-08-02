@@ -9,12 +9,12 @@ import java.util.Set;
 
 @Data
 public class UserDto {
-    private long id;
+    private Long id;
     private String firstName;
     private String surName;
     private LocalDate dateOfBirth;
     private User.Status status;
-    private long projectId;
+    private Long projectId;
 
     public static User toUser(UserDto userDto) {
         User user = new User();

@@ -2,8 +2,10 @@ package ua.com.infopulse.demo.dto;
 
 import lombok.Data;
 
+import java.math.BigInteger;
+
 @Data
 public class ProjectStatusDto {
-    private long activeProjects;
-    private long finishedProjects;
+    private BigInteger activeProjects;
+    private BigInteger finishedProjects;
 }

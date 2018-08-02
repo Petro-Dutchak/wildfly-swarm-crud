@@ -1,4 +1,4 @@
-package ua.com.infopulse.demo;
+package ua.com.infopulse.demo.util;
 
 import ua.com.infopulse.demo.entity.User;
 

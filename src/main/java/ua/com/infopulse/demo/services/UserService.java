@@ -1,6 +1,6 @@
 package ua.com.infopulse.demo.services;
 
-import ua.com.infopulse.demo.Utils;
+import ua.com.infopulse.demo.util.Utils;
 import ua.com.infopulse.demo.dao.UserDao;
 import ua.com.infopulse.demo.dto.UserChangeStatusDto;
 import ua.com.infopulse.demo.dto.UserDto;
@@ -37,7 +37,6 @@ public class UserService {
     }
 
     public UserStatusDto getUserStatus() {
-
         return userDao.getUserStatus();
     }
 }
