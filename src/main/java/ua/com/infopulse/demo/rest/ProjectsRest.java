@@ -47,6 +47,7 @@ public class ProjectsRest {
     }
 
     @PUT
+    @Path("/finish")
     @Consumes("application/json")
     @Produces("application/json")
     public ProjectDto finishProject(ProjectFinishDto projectFinishDto) {
@@ -61,6 +62,7 @@ public class ProjectsRest {
     }
 
     @POST
+    @Path("/setUsers")
     @Consumes("application/json")
     @Produces("application/json")
     public ProjectDto projectSetUsers(ProjectSetUsers projectSetUsers) {

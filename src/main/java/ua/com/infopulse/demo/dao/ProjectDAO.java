@@ -6,6 +6,7 @@ import ua.com.infopulse.demo.entity.Project;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 
@@ -43,10 +44,10 @@ public class ProjectDAO {
 
     public ProjectStatusDto getProjectstatus() {
         ProjectStatusDto projectStatusDto = new ProjectStatusDto();
-        projectStatusDto.setActiveProjects((Long) em.createNativeQuery(
-            "SELECT count(*) FROM Project p WHERE p.endDate IS NULL ").getSingleResult());
-        projectStatusDto.setFinishedProjects((Long) em.createNativeQuery(
-            "SELECT count(*) FROM Project p WHERE p.endDate IS NOT NULL ").getSingleResult());
+        projectStatusDto.setActiveProjects((BigInteger) em.createNativeQuery(
+            "SELECT count(*) FROM Project  p WHERE p.ENDDATE IS NULL ").getSingleResult());
+        projectStatusDto.setFinishedProjects((BigInteger) em.createNativeQuery(
+            "SELECT count(*) FROM Project p WHERE p.ENDDATE IS NOT NULL ").getSingleResult());
         return projectStatusDto;
 
     }

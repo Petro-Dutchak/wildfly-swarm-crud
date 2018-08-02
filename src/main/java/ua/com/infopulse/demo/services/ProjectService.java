@@ -24,6 +24,7 @@ public class ProjectService {
     }
 
     public ProjectDto updateProject(ProjectDto projectDto) {
+       System.out.print(projectDto);
         return Project.projectDto(projectDAO.update(ProjectDto.toProject(projectDto)));
     }
 
@@ -36,10 +37,12 @@ public class ProjectService {
     }
 
     public ProjectDto finishProject(ProjectFinishDto projectFinishDto) {
-        List<User> users = userDao.getUsersByProjectId(projectFinishDto.getId());
+       Project project = projectDAO.get(projectFinishDto.getId());
+        List<User> users = userDao.getUsersByProjectId(project);
         for (User user:users) {
             user.setProject(null);
             user.setStatus(User.Status.INACTIVE);
+            userDao.update(user);
         }
         return Project.projectDto(projectDAO.finishProject(projectFinishDto.getId(), projectFinishDto.getEndDate()));
     }

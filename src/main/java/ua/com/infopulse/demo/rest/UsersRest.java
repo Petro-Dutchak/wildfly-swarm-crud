@@ -48,6 +48,7 @@ public class UsersRest {
     }
 
     @PUT
+    @Path("/changeStatus")
     @Consumes("application/json")
     @Produces("application/json")
     public UserDto changeStatus(UserChangeStatusDto userChangeStatusDto) {

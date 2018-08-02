@@ -1,11 +1,13 @@
 package ua.com.infopulse.demo.dao;
 
 import ua.com.infopulse.demo.dto.UserStatusDto;
+import ua.com.infopulse.demo.entity.Project;
 import ua.com.infopulse.demo.entity.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -59,14 +61,14 @@ public class UserDao {
     }
 
     public List<User> getUsers(List<Long> usersIds) {
-        List<User> result = em.createQuery("SELECT u FROM USER u WHERE u.id IN :ids").
-                setParameter("ids", usersIds).getResultList();
+        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.id IN :ids", User.class);
+        List<User> result = query.setParameter("ids", usersIds).getResultList();
         return result;
     }
 
-    public List<User> getUsersByProjectId(Long projectId) {
-        List<User> result = em.createQuery("SELECT u FROM USER u WHERE u.projectId = :id").
-                setParameter("id", projectId).getResultList();
+    public List<User> getUsersByProjectId(Project project) {
+        List<User> result = em.createQuery("SELECT u FROM User u WHERE u.project = :project", User.class).
+                setParameter("project", project).getResultList();
         return result;
     }
 
